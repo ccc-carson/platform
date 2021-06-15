@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.sofast.cloud</groupId>
+    <artifactId>so-fast-cloud</artifactId>
+    <packaging>pom</packaging>
+    <version>${so.fast.version}</version>
+
+    <developers>
+        <developer>
+            <name>ncit.sol.yyq</name>
+            <email>yyqailaopo@163.com</email>
+        </developer>
+    </developers>
+
+
+    <modules>
+        <module>so-fast-uaa</module>
+        <module>so-fast-gateway</module>
+        <module>so-fast-common</module>
+        <module>so-fast-platform</module>
+        <module>so-fast-core</module>
+        <module>so-fast-sdk</module>
+        <module>so-fast-visual</module>
+        <module>so-fast-utils</module>
+        <module>so-fast-utils/sf-common-utils</module>
+        <module>so-fast-utils/sf-web-utils</module>
+    </modules>
+
+    <properties>
+        <so.fast.version>1.0-SNAPSHOT</so.fast.version>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <spring.boot.version>2.3.5.RELEASE</spring.boot.version>
+        <spring.cloud.version>Hoxton.SR8</spring.cloud.version>
+        <spring.cloud.alibaba.version>2.2.3.RELEASE</spring.cloud.alibaba.version>
+        <spring.boot.admin.version>2.3.1</spring.boot.admin.version>
+
+        <swagger2.version>3.0.0</swagger2.version>
+        <!-- 注意，swagger2的3.0.0版本和io.swagger的1.5.20版本集成，升级版本时需要一起升级-->
+        <io.swagger.version>1.5.20</io.swagger.version>
+        <swagger.ui.version>3.0.2</swagger.ui.version>
+
+        <mybatis.plus.boot.starter.version>3.3.2</mybatis.plus.boot.starter.version>
+        <dynamic.datasource.version>3.2.0</dynamic.datasource.version>
+        <druid.spring.boot.starter.version>1.1.14</druid.spring.boot.starter.version>
+        <fastjson.version>1.2.74</fastjson.version>
+        <transmittable.version>2.12.1</transmittable.version>
+
+        <hutool.version>5.5.0</hutool.version>
+        <bouncycastle.version>1.66</bouncycastle.version>
+        <javax.mail.version>1.4.7</javax.mail.version>
+        <okhttps.version>2.4.3</okhttps.version>
+        <javax.xml.bind.version>2.3.1</javax.xml.bind.version>
+        <easypoi.version>4.2.0</easypoi.version>
+        <jjwt.version>0.9.1</jjwt.version>
+
+        <spring.cloud.alibaba.seata.version>2.2.0.RELEASE</spring.cloud.alibaba.seata.version>
+        <seata.all.version>1.3.0</seata.all.version>
+
+        <docker.plugin.version>0.32.0</docker.plugin.version>
+        <docker.host>https://so-fast:2376</docker.host>
+        <docker.registry>docker.yangyanqing.cn:5000</docker.registry>
+        <docker.namespace>sol</docker.namespace>
+        <docker.username>ntt-admin</docker.username>
+        <docker.password>(Nttdata)</docker.password>
+        <docker.serverId>sofast-proxy</docker.serverId>
+
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- SpringCloud 微服务 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- SpringCloud Alibaba 微服务 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring.cloud.alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- SpringBoot 依赖配置 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-client</artifactId>
+                <version>1.4.0</version>
+            </dependency>
+
+            <!-- swagger2-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger2.version}</version>
+            </dependency>
+
+            <!-- swagger2-UI-->
+            <!--<dependency>-->
+                <!--<groupId>io.springfox</groupId>-->
+                <!--<artifactId>springfox-swagger-ui</artifactId>-->
+                <!--<version>${swagger2.version}</version>-->
+            <!--</dependency>-->
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-ui</artifactId>
+                <version>${swagger.ui.version}</version>
+            </dependency>
+
+            <!--线程池值传递-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${transmittable.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring.boot.admin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${spring.boot.admin.version}</version>
+            </dependency>
+
+            <!-- so-fast-core ↓ -->
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-web-starter</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-swagger-starter</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-redis-starter</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-cloud-starter</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-security-starter</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-mybatis-starter</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-ds-starter</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-feign-starter</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-log-starter</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-sentinel-gateway-starter</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-elastic-starter</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-seata-starter</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-rocketmq-starter</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-lock-starter</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+
+            <!-- so-fast-sdk ↓ -->
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-log-sdk</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-upms-sdk</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-system-sdk</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-cms-sdk</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-uaa-sdk</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+
+            <!-- so-fast-common ↓ -->
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-common</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <!-- so-fast-utils ↓ -->
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>sf-common-utils</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>sf-web-utils</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofast.cloud</groupId>
+                <artifactId>so-fast-tenant-starter</artifactId>
+                <version>${so.fast.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 环境区分 -->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <profileActive>dev</profileActive>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <profileActive>test</profileActive>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profileActive>prod</profileActive>
+            </properties>
+        </profile>
+    </profiles>
+
+
+    <build>
+        <!--指定打包的名称-->
+        <finalName>${project.artifactId}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <!--插件统一定义,子模块可以选择是否使用-->
+        <pluginManagement>
+            <!--springboot打包插件-->
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>1.2.0</version>
+
+                    <!--<executions>-->
+                        <!--<execution>-->
+                            <!--<id>build-image</id>-->
+                            <!--<phase>package</phase>-->
+                            <!--<goals>-->
+                                <!--<goal>build</goal>-->
+                            <!--</goals>-->
+                        <!--</execution>-->
+                        <!--<execution>-->
+                            <!--<id>image-tag</id>-->
+                            <!--<phase>package</phase>-->
+                            <!--<goals>-->
+                                <!--<goal>tag</goal>-->
+                            <!--</goals>-->
+                            <!--<configuration>-->
+                                <!--<image>sol/${project.name}:${project.version}</image>-->
+                                <!--<newName>${docker.registry}/sol/${project.name}:${project.version}</newName>-->
+                            <!--</configuration>-->
+                        <!--</execution>-->
+                        <!--<execution>-->
+                            <!--<id>package-push</id>-->
+                            <!--<phase>package</phase>-->
+                            <!--<goals>-->
+                                <!--<goal>push</goal>-->
+                            <!--</goals>-->
+                            <!--<configuration>-->
+                                <!--<imageName>${docker.registry}/sol/${project.name}:${project.version}</imageName>-->
+                            <!--</configuration>-->
+                        <!--</execution>-->
+                    <!--</executions>-->
+
+                    <configuration>
+                        <forceTags>true</forceTags>
+                        <dockerHost>${docker.host}</dockerHost>
+                        <!--<dockerCertPath>/Users/yyq/git/so-fast-cloud/cert</dockerCertPath>-->
+                        <dockerCertPath>/root/cert</dockerCertPath>
+                        <imageName>sol/${project.name}:${project.version}</imageName>
+                        <baseImage>openjdk:8-jre</baseImage>
+                        <entryPoint>["java","-jar","/${project.build.finalName}.jar"]</entryPoint>
+
+                        <!--<dockerDirectory>${project.basedir}/</dockerDirectory>-->
+
+                        <resources>
+                            <resource>
+                                <targetPath>/</targetPath>
+                                <directory>${project.build.directory}</directory>
+                                <include>${project.build.finalName}.jar</include>
+                            </resource>
+                        </resources>
+                    </configuration>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+
+        <!--指定编译JDK版本-->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+
+    <!--指定发布的私服-->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sofast-snapshots</id>
+            <url>http://so-fast:8091/repository/sofast-snapshot/</url>
+        </snapshotRepository>
+        <repository>
+            <id>sofast-releases</id>
+            <url>http://so-fast:8091/repository/sofast-release/</url>
+        </repository>
+    </distributionManagement>
+
+    <!--指定代理私服镜像-->
+    <repositories>
+        <repository>
+            <id>sofast-proxy</id>
+            <url>http://so-fast:8091/repository/maven-public/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+</project>
